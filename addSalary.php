@@ -251,7 +251,7 @@ function sum()
     
 	<div class = "b">
 	 <div class="search-box">
-	<label for="psw"><b>Hardware</b></label><br>
+	<label for="psw"><b>Driver Name</b></label><br>
         <input type="text" autocomplete="off" placeholder="Hardware" name="hardwareid" id="hardwareid" required>
         <div class="result"></div>
     </div>

@@ -132,7 +132,7 @@ li a:hover {
     </button>
     <div class="dropdown-content">
      <a href="addSalary.php" target="targetframe">Add Salary</a>
-     <a href="editinvoice.php" target="targetframe">Edit Invoice</a>
+     <a href="employee.php" target="targetframe">ADD Employee</a>
      <a href="findInvoice.php" target="targetframe">Find Invoice</a>
     </div>
   </div>
