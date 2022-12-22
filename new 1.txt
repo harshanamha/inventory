@@ -1,0 +1,6 @@
+if(mysql_num_rows($result)>0)
+{
+	echo"sucess loging"
+}
+else
+echo"login faild"
