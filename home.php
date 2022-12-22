@@ -114,7 +114,24 @@ li a:hover {
     <div class="dropdown-content">
      <a href="addSells.php" target="targetframe">Create Sales</a>
      <a href="searchSells.php" target="targetframe">Edit Sales</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Invoice 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
      <a href="searchInvoice.php" target="targetframe">Create Invoice</a>
+     <a href="editinvoice.php" target="targetframe">Edit Invoice</a>
+     <a href="findInvoice.php" target="targetframe">Find Invoice</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Salary 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+     <a href="addSalary.php" target="targetframe">Add Salary</a>
      <a href="editinvoice.php" target="targetframe">Edit Invoice</a>
      <a href="findInvoice.php" target="targetframe">Find Invoice</a>
     </div>
@@ -130,7 +147,7 @@ li a:hover {
     </div>
   </div>
   <li><a href="deliveryNoteReport.php" target="targetframe">Delivery Note Report</a></li>
-  <li style = "position: relative; left: 520px"> <a href="logout.php">LogOut </a></li>
+  <li style = "position: relative; left: 350px"> <a href="logout.php">LogOut </a></li>
 </ul>
 <hr style = "background-color: blue; height: 2px">
 <div>
