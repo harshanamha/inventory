@@ -165,6 +165,7 @@ top: -90px;
     /* Formatting result items */
     .result p{
         margin: 0;
+		background: #f2f2f2;
         padding: 7px 10px;
         border: 1px solid #CCCCCC;
         border-top: none;
@@ -200,6 +201,7 @@ top: -90px;
     /* Formatting result items */
     .result1 p{
         margin: 0;
+		background: #f2f2f2;
         padding: 7px 10px;
         border: 1px solid #CCCCCC;
         border-top: none;
@@ -236,6 +238,7 @@ top: -90px;
     /* Formatting result items */
     .result2 p{
         margin: 0;
+		background: #f2f2f2;
         padding: 7px 10px;
         border: 1px solid #CCCCCC;
         border-top: none;

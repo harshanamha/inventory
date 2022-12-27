@@ -122,7 +122,66 @@ a {
 top: -90px;
 }
 
+.search-box2{
+        width: 40%;
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+    }
+    .search-box2 input[type="text"]{
+        height: 45px;
+        padding: 5px 10px;
+        border: 0px solid #CCCCCC;
+        font-size: 14px;
+    }
+    .result2{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 0;
+    }
+    .search-box2 input[type="text"], .result{
+        width: 60%;
+        box-sizing: border-box;
+    }
+    /* Formatting result items */
+    .result2 p{
+        margin: 0;
+		background: #f2f2f2;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .result2 p:hover{
+        background: #f2f2f2;
+    }
+
 </style>
+<script src="./script.js"></script>
+<script>
+$(document).ready(function(){
+    $('.search-box2 input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result2");
+        if(inputVal.length){
+            $.get("selecttype.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result2 p", function(){
+        $(this).parents(".search-box2").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result2").empty();
+    });
+});
+</script>
 </head>
 <body style = "background-color: #D9D9D6; overflow: hidden;">
 
@@ -135,15 +194,15 @@ top: -90px;
 	
 
     <label for="email"><b>Delivery Note No</b></label><br>
-    <input type="text" placeholder="Delivery Note No" name="dNote" id="dNote" required>
+    <input style = "width:20%" type="text" placeholder="Delivery Note No" name="dNote" id="dNote" required>
 	<br>
 	
-	<div class = "a">
+	<div class = "a" style = "width:80% ;position:relative; left: 300px;">
     <label for="psw"><b>Date</b></label><br>
-    <input type="date" placeholder="" name="date" id="date" required>
+    <input   type="date" placeholder="" name="date" id="date" required>
 	</div>
 	
-	<div class = "c">
+	<div class = "c" style = "width:80% ;position:relative; left: 600px;">
     <label for="psw"><b>Type of Sale</b></label><br>
 	<div class="sel">
     <select name="saletype" id="saletype"  style = "width: 150px">
@@ -153,6 +212,15 @@ top: -90px;
 	</div>
 	</div>
 	
+	<div style = "width:80% ;position:relative; left: 900px; top: -270px">
+	<div class="search-box2">
+    <label for="psw"><b>Type</b></label><br>
+    <input type="text" placeholder="Type" name="type" id="type" required>
+	<div class="result2"></div>
+    </div>
+	</div>
+	
+	<div style = "position:relative; top: -70px; left:70px">
 	<div class= "b">
     <label for="psw"><b>Bulk Or Bag</b></label><br>
     <div class="sel">
@@ -211,10 +279,11 @@ top: -90px;
 	</div>
 	</div>
 	
-	<div class = "f">
+	<div class = "f" style = "position:relative; left:-70px">
     <hr>
     <button type="submit" class="registerbtn">Create Delivery Note</button>
     </div>
+	</div>
  
   </div>
 </form>

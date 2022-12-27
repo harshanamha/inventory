@@ -18,7 +18,7 @@ $row = mysqli_fetch_array($cityResult,MYSQLI_BOTH);
 if($row>0){
 	$hardwareid = $row["id"];
 	
-	$sql = "INSERT INTO sales (date, hardware,delivery_Note, qty, freeqty, unit, discount, total,restamount,status)
+	$sql = "INSERT INTO sales (date,hardware,delivery_Note, qty, freeqty, unit, discount, total,restamount,status)
 VALUES ('$date',$hardwareid,'$dN','$qty','$fqty','$uprice','$dprice','$total','$total','NOT DONE')";
 
 if ($con->query($sql) === TRUE) {

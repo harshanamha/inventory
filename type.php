@@ -29,7 +29,7 @@ body {
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password],input[type=date],input[type=number],div.sel {
+input[type=text], input[type=password] {
   width: 40%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -43,19 +43,6 @@ position: relative;
 left: 550px;
 top: -90px;
 }
-
-div.left {
-position: relative;
-left: 550px;
-top: -270px;
-}
-
-div.footer {
-position: relative;
-left: 0px;
-top: -270px;
-}
-
 
 div.b, hr.b {
 position: relative;
@@ -116,51 +103,20 @@ top: -90px;
 
 <div style = "position: relative; left: 130px">
 
-<form action="employeeReg.php" method="post"">
+<form action="typeReg.php" method="post"">
   <div class="container">
-    <h2>Register Employee</h2>
+    <h2>Register Type</h2>
     <hr>
 
-	<label for="email"><b>Join Date</b></label><br>
-    <input type="date" name="date" id="date" required>
+    <label for="email"><b>Type Name</b></label><br>
+    <input type="text" placeholder="Type Name" name="type" id="type" required>
 	<br>
-	
-	<div class = "c">
-    <label for="psw"><b>Destination</b></label><br>
-	<div class="sel">
-    <select name="type" id="type"  style = "width: 150px">
-  <option value="Driver">Driver</option>
-  <option value="Helper">Helper</option>
-</select>
-	</div>
-	</div>
-	
-	<label for="email"><b>Telephone 1</b></label><br>
-    <input type="text" placeholder="Telephone 1" name="tel1" id="tel1" required>
-	<br>
-	
-	<div class = "left">
-	 <label for="email"><b>Employee Name</b></label><br>
-    <input type="text" placeholder="Employee Name" name="name" id="name" required>
-	<br>
-	
-	 <label for="email"><b>Address</b></label><br>
-    <input type="text" placeholder="Address" name="address" id="address" required>
-	<br>
-	
-	 <label for="email"><b>Telephone 2</b></label><br>
-    <input type="text" placeholder="Telephone 2" name="tel2" id="tel2" required>
-	<br>
-	
-	</div>
-	
-	<div class="footer">
 	
     <hr>
 
-    <button type="submit" class="registerbtn">Create Employee</button>
+    <button type="submit" class="registerbtn">Create type</button>
  
-  </div>
+  
   
   
   </div>

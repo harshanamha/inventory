@@ -6,6 +6,7 @@ $con=mysqli_connect("localhost","root","","inventory");
 $dnote=$_POST["dNote"];
 $date=$_POST["date"];
 $stype=$_POST["saletype"];
+$type=$_POST["type"];
 $bulk=$_POST["bulk"];
 $qty=$_POST["qty"];
 $sono=$_POST["soNo"];
@@ -17,8 +18,8 @@ $dname=$_POST["dname"];
 $vno=$_POST["vNo"];
 
 
-$sql = "INSERT INTO stores (delivery_note, date, sale_type, bulk_bag, qty, soNo, poNo, dis, draft, amount, diverName, vehicleNo)
-VALUES ('$dnote','$date','$stype','$bulk','$qty','$sono','$pono','$dis','$draft',$amount,'$dname','$vno')";
+$sql = "INSERT INTO stores (delivery_note, date, type, sale_type, bulk_bag, qty, soNo, poNo, dis, draft, amount, diverName, vehicleNo)
+VALUES ('$dnote','$date','$type','$stype','$bulk','$qty','$sono','$pono','$dis','$draft',$amount,'$dname','$vno')";
 
 if ($con->query($sql) === TRUE) {
   echo '<script language="javascript">';

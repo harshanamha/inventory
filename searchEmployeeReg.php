@@ -12,7 +12,7 @@ $x = $_REQUEST["term"];
 
     // Prepare a select statement
 	
-	$cityResult= mysqli_query($link,"SELECT * FROM stores where delivery_note = '$x' ");
+	$cityResult= mysqli_query($link,"SELECT * FROM employee where name = '$x' ");
 $row = mysqli_fetch_array($cityResult,MYSQLI_BOTH);
     
 	
@@ -24,8 +24,6 @@ $row = mysqli_fetch_array($cityResult,MYSQLI_BOTH);
                     echo  $row["delivery_note"] ;
                     echo  '+' ;
                     echo  $row["date"] ;
-					echo  '+' ;
-                    echo  $row["type"] ;
 					echo  '+' ;
 					echo  $row["sale_type"] ;
 					echo  '+' ;
@@ -46,7 +44,6 @@ $row = mysqli_fetch_array($cityResult,MYSQLI_BOTH);
 					echo  $row["diverName"] ;
 					echo  '+' ;
 					echo  $row["vehicleNo"] ;
-					
                 
             } else{
                 echo "<p>Not Registar This City</p>";

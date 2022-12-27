@@ -7,6 +7,7 @@ $id=$_POST["id"];
 $dnote=$_POST["dNote"];
 $date=$_POST["date"];
 $stype=$_POST["saletype"];
+$type=$_POST["type"];
 $bulk=$_POST["bulk"];
 $qty=$_POST["qty"];
 $sono=$_POST["soNo"];
@@ -19,7 +20,7 @@ $vno=$_POST["vNo"];
 
 
 
- $sql = "UPDATE stores SET delivery_note='$dnote',date='$date',sale_type='$stype',bulk_bag='$bulk',qty='$qty',soNo='$sono',poNo='$pono',dis='$dis',draft='$draft',amount='$amount',diverName='$dname',vehicleNo='$vno' 
+ $sql = "UPDATE stores SET delivery_note='$dnote',date='$date',type='$type',sale_type='$stype',bulk_bag='$bulk',qty='$qty',soNo='$sono',poNo='$pono',dis='$dis',draft='$draft',amount='$amount',diverName='$dname',vehicleNo='$vno' 
 	 WHERE id='$id'";
      
 

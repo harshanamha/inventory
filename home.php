@@ -89,6 +89,7 @@ li a:hover {
 <ul>
   <li><a class="active" href="home.php">Home</a></li>
   <li><a href="city.php" target="targetframe">Create City</a></li>
+  <li><a href="type.php" target="targetframe">Create Type</a></li>
   <div class="dropdown">
     <button class="dropbtn">Hardware 
       <i class="fa fa-caret-down"></i>
@@ -132,7 +133,7 @@ li a:hover {
     </button>
     <div class="dropdown-content">
      <a href="addSalary.php" target="targetframe">Add Salary</a>
-     <a href="employee.php" target="targetframe">ADD Employee</a>
+     <a href="employee.php" target="targetframe">Add Employee</a>
      <a href="findInvoice.php" target="targetframe">Find Invoice</a>
     </div>
   </div>
@@ -147,7 +148,7 @@ li a:hover {
     </div>
   </div>
   <li><a href="deliveryNoteReport.php" target="targetframe">Delivery Note Report</a></li>
-  <li style = "position: relative; left: 350px"> <a href="logout.php">LogOut </a></li>
+  <li style = "position: relative; left: 250px"> <a href="logout.php">LogOut </a></li>
 </ul>
 <hr style = "background-color: blue; height: 2px">
 <div>

@@ -179,10 +179,69 @@ top: -10px;
     .result p:hover{
         background: #D9D9D6;
     }
+	
+	.search-box2{
+        width: 40%;
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+    }
+    .search-box2 input[type="text"]{
+        height: 45px;
+        padding: 5px 10px;
+        border: 0px solid #CCCCCC;
+        font-size: 14px;
+    }
+    .result2{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 0;
+    }
+    .search-box2 input[type="text"], .result{
+        width: 60%;
+        box-sizing: border-box;
+    }
+    /* Formatting result items */
+    .result2 p{
+        margin: 0;
+		background: #f2f2f2;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .result2 p:hover{
+        background: #f2f2f2;
+    }
 
 
 </style>
 <script src="./script.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.search-box2 input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result2");
+        if(inputVal.length){
+            $.get("selecttype.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result2 p", function(){
+        $(this).parents(".search-box2").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result2").empty();
+    });
+});
+</script>
 
 <script>
 $(document).ready(function(){
@@ -219,16 +278,18 @@ $(document).ready(function(){
 				document.getElementById("id").value = words[0];
 				document.getElementById("dNote").value = words[1];
 				document.getElementById("date").value = words[2];
-				document.getElementById("saletype").value = words[3];
-				document.getElementById("bulk").value = words[4];
-				document.getElementById("qty").value = words[5];
-				document.getElementById("soNo").value = words[6];
-				document.getElementById("poNo").value = words[7];
-				document.getElementById("cash_dis").value = words[8];
-				document.getElementById("draft").value = words[9];
-				document.getElementById("amount").value = words[10];
-				document.getElementById("dname").value = words[11];
-				document.getElementById("vNo").value = words[12];
+				document.getElementById("saletype").value = words[4];
+				document.getElementById("bulk").value = words[5];
+				document.getElementById("qty").value = words[6];
+				document.getElementById("soNo").value = words[7];
+				document.getElementById("poNo").value = words[8];
+				document.getElementById("cash_dis").value = words[9];
+				document.getElementById("draft").value = words[10];
+				document.getElementById("amount").value = words[11];
+				document.getElementById("dname").value = words[12];
+				document.getElementById("vNo").value = words[13];
+				document.getElementById("type").value = words[3];
+				document.getElementById("type").readOnly = true;
 				document.getElementById("dNote").readOnly = true;
 				document.getElementById('date').readOnly = true;
 				document.getElementById('saletype').readOnly = true;
@@ -269,6 +330,7 @@ $(document).ready(function(){
 				document.getElementById("amount").readOnly = false;
 				document.getElementById("dname").readOnly = false;
 				document.getElementById("vNo").readOnly = false;
+				document.getElementById("type").readOnly = false;
 				document.getElementById('updatebtn').hidden = false;
 
     };
@@ -307,16 +369,16 @@ $(document).ready(function(){
 	<input type="text" placeholder="id" name="id" id="id" readOnly>
 	</div>
 
-    <label for="email"><b>Delivery Note No</b></label><br>
-    <input type="text" placeholder="Delivery Note No" name="dNote" id="dNote" required>
+   <label for="email"><b>Delivery Note No</b></label><br>
+    <input style = "width:20%" type="text" placeholder="Delivery Note No" name="dNote" id="dNote" required>
 	<br>
 	
-	<div class = "a">
+	<div class = "a" style = "width:80% ;position:relative; left: 300px;">
     <label for="psw"><b>Date</b></label><br>
-    <input type="date" placeholder="" name="date" id="date" min="1900-01-01" max="2100-12-31" required>
+    <input   type="date" placeholder="" name="date" id="date" required>
 	</div>
 	
-	<div class = "c">
+	<div class = "c" style = "width:80% ;position:relative; left: 600px;">
     <label for="psw"><b>Type of Sale</b></label><br>
 	<div class="sel">
     <select name="saletype" id="saletype"  style = "width: 150px">
@@ -326,6 +388,15 @@ $(document).ready(function(){
 	</div>
 	</div>
 	
+	<div style = "width:80% ;position:relative; left: 900px; top: -270px">
+	<div class="search-box2">
+    <label for="psw"><b>Type</b></label><br>
+    <input type="text" placeholder="Type" name="type" id="type" required>
+	<div class="result2"></div>
+    </div>
+	</div>
+	
+	<div style = "position:relative; top: -90px; left:70px">
 	<div class= "b">
     <label for="psw"><b>Bulk Or Bag</b></label><br>
     <div class="sel">
@@ -384,10 +455,11 @@ $(document).ready(function(){
 	</div>
 	</div>
 	
-	<div class = "f">
+	<div class = "f" style = "position:relative; left:-70px">
     <hr>
-    <button type="submit" class="registerbtn" id = "updatebtn" name = "updatebtn" hidden>update Delivery Note</button>
+     <button type="submit" class="registerbtn" id = "updatebtn" name = "updatebtn" hidden>update Delivery Note</button>
     </div>
+	</div>
  
   </div>
 </form>
