@@ -20,20 +20,21 @@ echo "<h2 style='text-align: center;'>". "From :" . $fdate ."&nbsp;&nbsp;"."&nbs
 echo "<h2 style='text-align: center;'>". "City :&nbsp;&nbsp;" . $city. "</h2>";
 
 if($cid){
-$select = mysqli_query($conn,"SELECT c.name,sum(s.qty) as qty,sum(s.freeqty) as freeqty ,sum(s.discount) as discount ,sum(s.total) as total
+$select = mysqli_query($conn,"SELECT c.name,sum(s.sqty) as sqty,sum(s.freeqty) as freeqty ,sum(s.discount) as discount ,sum(s.total) as total
 FROM `sales` as s
 INNER JOIN hardware h ON s.hardware = h.id
 INNER JOIN city c ON c.id = h.city
-where date between '$fdate' and '$tdate' AND h.city = '$cid'
+where date between '$fdate' and '$tdate' AND h.city = '$cid' 
 Group BY h.city");
 } else {
-	$select = mysqli_query($conn,"SELECT c.name,sum(s.qty) as qty,sum(s.freeqty) as freeqty ,sum(s.discount) as discount ,sum(s.total) as total
+	$select = mysqli_query($conn,"SELECT c.name,sum(s.sqty) as sqty,sum(s.freeqty) as freeqty ,sum(s.discount) as discount ,sum(s.total) as total
 FROM `sales` as s
 INNER JOIN hardware h ON s.hardware = h.id
 INNER JOIN city c ON c.id = h.city
 where date between '$fdate' and '$tdate' 
 Group BY h.city");
 }
+
 
 echo '<style type="text/css">
 #customers {
@@ -63,7 +64,7 @@ echo '<style type="text/css">
 
 echo '<table border=1px id="customers">';
 echo'<tr>';
-echo'<th>'."Hardware Name".'</th>';
+echo'<th>'."City Name".'</th>';
 echo'<th>'."Total Qty".'</th>';
 echo'<th>'."Free Qty".'</th>';
 echo'<th>'."Total Discount".'</th>';
@@ -74,7 +75,7 @@ while($row = mysqli_fetch_array($select,MYSQLI_BOTH)){
 	
 	echo'<tr>';
 	echo'<td>'.$row["name"].'</td>';
-	echo'<td>'.$row["qty"].'</td>';
+	echo'<td>'.$row["sqty"].'</td>';
 	echo'<td>'.$row["freeqty"].'</td>';
 	echo'<td>'.$row["discount"].'</td>';
 	echo'<td>'.$row["total"].'</td>';

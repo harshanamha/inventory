@@ -137,7 +137,17 @@ li a:hover {
      <a href="findInvoice.php" target="targetframe">Find Invoice</a>
     </div>
   </div>
-  <li><a href="genReport.php" target="targetframe">Summary Reports</a></li>
+  <div class="dropdown">
+    <button class="dropbtn">Summary Reports
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+     <a href="genReport.php" target="targetframe">Sells Summary Reports</a>
+     <a href="genprofitReport.php" target="targetframe">Profit Summary Report</a>
+     <a href="genDNprofitReport.php" target="targetframe">Deliver Note Summary Report</a>
+    </div>
+  </div>
+  
   <div class="dropdown">
     <button class="dropbtn">Detail Reports 
       <i class="fa fa-caret-down"></i>

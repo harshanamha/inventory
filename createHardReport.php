@@ -21,18 +21,19 @@ echo "<h2 style='text-align: center;'>". "Hardware :&nbsp;&nbsp;" . $hardwareid.
 
 
 
-if(	$hid){
-$select = mysqli_query($conn,"SELECT h.name,sum(s.qty) as qty,sum(s.freeqty) as freeqty ,sum(s.discount) as discount ,sum(s.total) as total
+if($hid){
+$select = mysqli_query($conn,"SELECT h.name,sum(s.sqty) as qty,sum(s.freeqty) as freeqty ,sum(s.discount) as discount ,sum(s.total) as total
 FROM `sales` as s,`hardware` as h
 where s.hardware = h.id AND date between '$fdate' and '$tdate' AND s.hardware = '$hid'
 Group BY s.hardware");
 } else {
-	$select = mysqli_query($conn,"SELECT h.name,sum(s.qty) as qty,sum(s.freeqty) as freeqty ,sum(s.discount) as discount ,sum(s.total) as total
+$select = mysqli_query($conn,"SELECT h.name,sum(s.sqty) as qty,sum(s.freeqty) as freeqty ,sum(s.discount) as discount ,sum(s.total) as total
 FROM `sales` as s,`hardware` as h
 where s.hardware = h.id AND date between '$fdate' and '$tdate'
 Group BY s.hardware");
 }
 
+ 
 echo '<style type="text/css">
 #customers {
   font-family: Arial, Helvetica, sans-serif;
