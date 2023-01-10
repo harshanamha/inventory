@@ -16,6 +16,19 @@ $select1 = mysqli_query($conn,"SELECT *
 FROM `stores`
 where date between '$fdate' and '$tdate' ");
 
+$select2 = mysqli_query($conn,"SELECT * 
+FROM `salary`
+where date between '$fdate' and '$tdate' ");
+
+
+$empsal = 0.00;
+
+while($row2 = mysqli_fetch_array($select2,MYSQLI_BOTH)){
+	 $empsal = $empsal + $row2["driversalary"] + $row2["helper1salary"] + $row2["helper2salary"];
+	 
+	
+}
+
 $bqty = 0;
 $btotal = 0.00;
 
@@ -98,7 +111,10 @@ echo '<tr>';
 echo "<h2 style='position: relative; left: 300px;'>".'<td>'."Total Income:&nbsp;&nbsp;" .'</td>'.'<td>' . $total  .'</td>'.  "</h2>";
 echo '</tr>';
 echo '<tr>';
-echo "<h2 style='position: relative; left: 300px;'>".'<td>'."Total Profit:&nbsp;&nbsp;" .'</td>'.'<td>' . ($total-$btotal)  .'</td>'.  "</h2>";
+echo "<h2 style='position: relative; left: 300px;'>".'<td>'."Employee salary:&nbsp;&nbsp;" .'</td>'.'<td>' . $empsal  .'</td>'.  "</h2>";
+echo '</tr>';
+echo '<tr>';
+echo "<h2 style='position: relative; left: 300px;'>".'<td>'."Total Profit:&nbsp;&nbsp;" .'</td>'.'<td>' . ($total-($btotal+$empsal))  .'</td>'.  "</h2>";
 echo '</tr>';
 echo '</table>';
 

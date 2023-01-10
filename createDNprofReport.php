@@ -8,8 +8,8 @@ $dn=$_POST["dn"];
 
 	
 	$select = mysqli_query($conn,"SELECT * 
-FROM `sales` as s,`hardware` as h
-where s.delivery_Note = '$dn'");	
+	FROM `sales`
+	where delivery_Note = '$dn' ");	
 
 $select1 = mysqli_query($conn,"SELECT * 
 FROM `stores`

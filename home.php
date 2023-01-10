@@ -1,6 +1,5 @@
 <?php 
  session_start();
- 
 
 if($_SESSION['status']!="Active")
 {
@@ -128,16 +127,6 @@ li a:hover {
     </div>
   </div>
   <div class="dropdown">
-    <button class="dropbtn">Salary 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-     <a href="addSalary.php" target="targetframe">Add Salary</a>
-     <a href="employee.php" target="targetframe">Add Employee</a>
-     <a href="findInvoice.php" target="targetframe">Find Invoice</a>
-    </div>
-  </div>
-  <div class="dropdown">
     <button class="dropbtn">Summary Reports
       <i class="fa fa-caret-down"></i>
     </button>
@@ -155,10 +144,37 @@ li a:hover {
     <div class="dropdown-content">
      <a href="genCityReport.php" target="targetframe">City Detail Report</a>
      <a href="genHardReport.php" target="targetframe">Hardware Detail Report</a>
+     <a href="gentypesumReport.php" target="targetframe">Type Detail Report</a>
     </div>
   </div>
   <li><a href="deliveryNoteReport.php" target="targetframe">Delivery Note Report</a></li>
-  <li style = "position: relative; left: 250px"> <a href="logout.php">LogOut </a></li>
+  
+  <div class="dropdown">
+    <button class="dropbtn">Payroll 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+	<a href="employee.php" target="targetframe">Add Employee</a>
+     <a href="addSalary.php" target="targetframe">Add Salary</a>
+     <a href="editsalary.php" target="targetframe">Edit Salary</a>
+     <a href="searchsalary.php" target="targetframe">Search Salary</a>
+    </div>
+  </div>
+  
+  <div class="dropdown">
+    <button class="dropbtn">Vehicle 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+	<a href="vehicle.php" target="targetframe">Add Vehicle</a>
+     <a href="createRepair.php" target="targetframe">Add Repair</a>
+	 <a href="searchrepair.php" target="targetframe">Search Repair</a>
+     <a href="addfuel.php" target="targetframe">Add Fuel</a>
+     <a href="searchfuel.php" target="targetframe">Search Fuel</a>
+    </div>
+  </div>
+  
+  <li style = "position: relative; left: 160px"> <a href="logout.php">LogOut </a></li>
 </ul>
 <hr style = "background-color: blue; height: 2px">
 <div>

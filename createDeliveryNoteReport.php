@@ -66,7 +66,7 @@ echo'</tr>';
 
 while($row = mysqli_fetch_array($select,MYSQLI_BOTH)){
 	
-	$tqty = $tqty + $row["qty"];
+	$tqty = $tqty + $row["sqty"];
 	$tfqty = $tfqty + $row["freeqty"];
 	$tdis = $tdis + $row["discount"];
 	$tin = $tin + $row["total"] ;
@@ -74,7 +74,7 @@ while($row = mysqli_fetch_array($select,MYSQLI_BOTH)){
 	echo'<tr>';
 	echo'<td>'.$row["name"].'</td>';
 	echo'<td>'.$row["date"].'</td>';
-	echo'<td>'.$row["qty"].'</td>';
+	echo'<td>'.$row["sqty"].'</td>';
 	echo'<td>'.$row["freeqty"].'</td>';
 	echo'<td>'.$row["unit"].'</td>';
 	echo'<td>'.$row["discount"].'</td>';
