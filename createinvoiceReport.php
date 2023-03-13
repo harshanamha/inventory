@@ -9,17 +9,14 @@ $conn=mysqli_connect("localhost","root","","inventory");
 //$p = $pieces[1];
 
 $y=$_POST["dno"];
-$p=$_POST["hname"];
+$p =$_POST["hname"];
 
 
-	
-$hardwareResult= mysqli_query($conn,"SELECT * FROM hardware where name='$p'");
-$hardwarerow = mysqli_fetch_array($hardwareResult,MYSQLI_BOTH);	
 
-$hid = $hardwarerow["id"];
+
 
 	
-$saleResult= mysqli_query($conn,"SELECT * FROM sales where delivery_Note='$y' and hardware = '$hid' ");
+$saleResult= mysqli_query($conn,"SELECT * FROM sales where invno='$y'");
 $salerow = mysqli_fetch_array($saleResult,MYSQLI_BOTH);	
 
 $sid = $salerow["id"];
@@ -27,7 +24,7 @@ $total = $salerow["total"];
 $rest = $salerow["restamount"];
 $status = $salerow["status"];
 
-echo "<h2 style='text-align: center;'>". "Delivery Note No :" . $y ."&nbsp;&nbsp;"."&nbsp;&nbsp;Hardware:". $p. "</h2>";
+echo "<h2 style='text-align: center;'>". "Invoice :" . $y ."&nbsp;&nbsp;"."&nbsp;&nbsp;Hardware:". $p. "</h2>";
 echo "<h2 style='text-align: center;'>". "Total :" . $total ."&nbsp;&nbsp;"."&nbsp;&nbsp;Rest Amount:". $rest. "</h2>";
 echo "<h2 style='text-align: center;'>". "Status :&nbsp;&nbsp;" . $status. "</h2>";
 

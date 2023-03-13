@@ -20,6 +20,43 @@ $select2 = mysqli_query($conn,"SELECT *
 FROM `salary`
 where date between '$fdate' and '$tdate' ");
 
+$select3 = mysqli_query($conn,"SELECT * 
+FROM `other`
+where date between '$fdate' and '$tdate' ");
+
+$select4 = mysqli_query($conn,"SELECT * 
+FROM `fuel`
+where date between '$fdate' and '$tdate' ");
+
+$select5 = mysqli_query($conn,"SELECT * 
+FROM `repair`
+where date between '$fdate' and '$tdate' ");
+
+
+
+$fuel = 0.00;
+
+while($row4 = mysqli_fetch_array($select4,MYSQLI_BOTH)){
+	 $fuel = $fuel + $row4["cost"];
+	 
+	
+}
+
+$repair = 0.00;
+
+while($row5 = mysqli_fetch_array($select5,MYSQLI_BOTH)){
+	 $repair = $repair + $row5["cost"];
+	 
+	
+}
+
+$other = 0.00;
+
+while($row3 = mysqli_fetch_array($select3,MYSQLI_BOTH)){
+	 $other = $other + $row3["cost"];
+	 
+	
+}
 
 $empsal = 0.00;
 
@@ -114,7 +151,16 @@ echo '<tr>';
 echo "<h2 style='position: relative; left: 300px;'>".'<td>'."Employee salary:&nbsp;&nbsp;" .'</td>'.'<td>' . $empsal  .'</td>'.  "</h2>";
 echo '</tr>';
 echo '<tr>';
-echo "<h2 style='position: relative; left: 300px;'>".'<td>'."Total Profit:&nbsp;&nbsp;" .'</td>'.'<td>' . ($total-($btotal+$empsal))  .'</td>'.  "</h2>";
+echo "<h2 style='position: relative; left: 300px;'>".'<td>'."Fuel Cost:&nbsp;&nbsp;" .'</td>'.'<td>' . $fuel  .'</td>'.  "</h2>";
+echo '</tr>';
+echo '<tr>';
+echo "<h2 style='position: relative; left: 300px;'>".'<td>'."Repair Cost:&nbsp;&nbsp;" .'</td>'.'<td>' . $repair  .'</td>'.  "</h2>";
+echo '</tr>';
+echo '<tr>';
+echo "<h2 style='position: relative; left: 300px;'>".'<td>'."Other Cost:&nbsp;&nbsp;" .'</td>'.'<td>' . $other  .'</td>'.  "</h2>";
+echo '</tr>';
+echo '<tr>';
+echo "<h2 style='position: relative; left: 300px;'>".'<td>'."Total Profit:&nbsp;&nbsp;" .'</td>'.'<td>' . ($total-($btotal+$empsal+$fuel+$repair+$other))  .'</td>'.  "</h2>";
 echo '</tr>';
 echo '</table>';
 

@@ -10,7 +10,7 @@ if($link === false){
  
 if(isset($_REQUEST["term"])){
     // Prepare a select statement
-    $sql = "SELECT i.*,h.name as hname,s.* FROM invoice as i, sales as s, hardware as h WHERE i.dnote_id = s.id AND s.hardware = h.id AND invoice LIKE ?";
+    $sql = "SELECT s.* FROM sales as s WHERE invno LIKE ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
@@ -27,7 +27,7 @@ if(isset($_REQUEST["term"])){
             if(mysqli_num_rows($result) > 0){
                 // Fetch result rows as an associative array
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    echo "<p>" . $row["invoice"]."</p>";
+                    echo "<p>" . $row["invno"]. "</p>";
                 }
             } else{
                 echo "<p>Not Registar This Invoice</p>";

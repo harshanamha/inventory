@@ -9,10 +9,19 @@ if($link === false){
 }
 
 $x = $_REQUEST["term"];
+//$pieces = explode("/", $x);
+//$y = $pieces[0]; 
+//$p = $pieces[1];
+
+
+
+
 
     // Prepare a select statement
 	
-	$cityResult= mysqli_query($link,"SELECT * FROM stores where delivery_note = '$x' ");
+
+	
+$cityResult= mysqli_query($link,"SELECT s.*,h.name as hname FROM sales as s, hardware as h WHERE s.hardware = h.id AND s.invno = '$x' ");
 $row = mysqli_fetch_array($cityResult,MYSQLI_BOTH);
     
 	
@@ -21,35 +30,31 @@ $row = mysqli_fetch_array($cityResult,MYSQLI_BOTH);
                 
 					echo  $row["id"] ;
                     echo  '+' ;
-                    echo  $row["delivery_note"] ;
-                    echo  '+' ;
                     echo  $row["date"] ;
 					echo  '+' ;
-                    echo  $row["type"] ;
+					echo  $row["hname"] ;
 					echo  '+' ;
-					echo  $row["sale_type"] ;
+					echo  $row["delivery_Note"] ;
 					echo  '+' ;
-					echo  $row["bulk_bag"] ;
+					echo  $row["invno"] ;
 					echo  '+' ;
-					echo  $row["qty"] ;
+					echo  $row["sqty"] ;
 					echo  '+' ;
-					echo  $row["soNo"] ;
+					echo  $row["freeqty"] ;
 					echo  '+' ;
-					echo  $row["poNo"] ;
+					echo  $row["unit"] ;
 					echo  '+' ;
-					echo  $row["dis"] ;
+					echo  $row["discount"] ;
 					echo  '+' ;
-					echo  $row["draft"] ;
+					echo  $row["total"] ;
 					echo  '+' ;
-					echo  $row["amount"] ;
+					echo  $row["restamount"] ;
 					echo  '+' ;
-					echo  $row["diverName"] ;
-					echo  '+' ;
-					echo  $row["vehicleNo"] ;
-					echo  '+' ;
-					echo  $row["restqty"] ;
+					echo  $row["status"] ;
 					
-                
+					
+					
+					
             } else{
                 echo "<p>Not Registar This City</p>";
             }

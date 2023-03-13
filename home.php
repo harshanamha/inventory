@@ -108,22 +108,22 @@ li a:hover {
     </div>
   </div>
   <div class="dropdown">
-    <button class="dropbtn">Sales 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-     <a href="addSells.php" target="targetframe">Create Sales</a>
-     <a href="searchSells.php" target="targetframe">Edit Sales</a>
-    </div>
-  </div>
-  <div class="dropdown">
     <button class="dropbtn">Invoice 
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-     <a href="searchInvoice.php" target="targetframe">Create Invoice</a>
-     <a href="editinvoice.php" target="targetframe">Edit Invoice</a>
-     <a href="findInvoice.php" target="targetframe">Find Invoice</a>
+     <a href="addSells.php" target="targetframe">Create Invoice</a>
+     <a href="searchSells.php" target="targetframe">Edit Invoice</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Recept 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+     <a href="searchInvoice.php" target="targetframe">Create Recept</a>
+     <a href="editinvoice.php" target="targetframe">Edit Recept</a>
+     <a href="findInvoice.php" target="targetframe">Find Recept</a>
     </div>
   </div>
   <div class="dropdown">
@@ -145,6 +145,7 @@ li a:hover {
      <a href="genCityReport.php" target="targetframe">City Detail Report</a>
      <a href="genHardReport.php" target="targetframe">Hardware Detail Report</a>
      <a href="gentypesumReport.php" target="targetframe">Type Detail Report</a>
+     <a href="collectmoney.php" target="_blank">Collect Money Report</a>
     </div>
   </div>
   <li><a href="deliveryNoteReport.php" target="targetframe">Delivery Note Report</a></li>
@@ -171,6 +172,8 @@ li a:hover {
 	 <a href="searchrepair.php" target="targetframe">Search Repair</a>
      <a href="addfuel.php" target="targetframe">Add Fuel</a>
      <a href="searchfuel.php" target="targetframe">Search Fuel</a>
+     <a href="other.php" target="targetframe">Other</a>
+     <a href="searchother.php" target="targetframe">Search Other Cost</a>
     </div>
   </div>
   

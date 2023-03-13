@@ -189,6 +189,10 @@ top: -90px;
         border: 0px solid #CCCCCC;
         font-size: 14px;
     }
+	.search-box2 input[type="text"], .result{
+        width: 100%;
+        box-sizing: border-box;
+    }
     .result2{
         position: absolute;        
         z-index: 999;
@@ -215,29 +219,6 @@ top: -90px;
 
 </style>
 <script src="./script.js"></script>
-<script>
-$(document).ready(function(){
-    $('.search-box input[type="text"]').on("keyup input", function(){
-        /* Get input value on change */
-        var inputVal = $(this).val();
-        var resultDropdown = $(this).siblings(".result");
-        if(inputVal.length){
-            $.get("selectHardware.php", {term: inputVal}).done(function(data){
-                // Display the returned data in browser
-                resultDropdown.html(data);
-            });
-        } else{
-            resultDropdown.empty();
-        }
-    });
-    
-    // Set search input value on click of result item
-    $(document).on("click", ".result p", function(){
-        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
-        $(this).parent(".result").empty();
-    });
-});
-</script>
 
 <script>
 
@@ -272,7 +253,7 @@ $(document).ready(function(){
         var inputVal = $(this).val();
         var resultDropdown = $(this).siblings(".result2");
         if(inputVal.length){
-            $.get("selecttype.php", {term: inputVal}).done(function(data){
+            $.get("selectEmployee.php", {term: inputVal}).done(function(data){
                 // Display the returned data in browser
                 resultDropdown.html(data);
             });
@@ -288,14 +269,30 @@ $(document).ready(function(){
     });
 });
 </script>
+
+
+<script>
+
+function hidcity() 
+{ 
+    document.getElementById("city").readOnly = true;
+}
+
+function hidhardware() 
+{ 
+    document.getElementById("hardwareid").readOnly = true;
+}
+
+</script>
+
 </head>
 <body style = "background-color: #D9D9D6; overflow: hidden;">
 
 <div style = "position: relative; left: 130px">
 
-<form action="createReport.php" method="post" target="_blank">
+<form action="createotherreport.php" method="post">
   <div class="container">
-    <h2>Search Summary Report</h2>
+    <h2>Other Cost Report</h2>
     <hr>
 	
    
@@ -308,39 +305,12 @@ $(document).ready(function(){
     </div>
 	<br>
 	
-	<div class="b">
-	
-	<div class="search-box1">
-	<label for="psw"><b>City</b></label><br>
-        <input type="text" autocomplete="off" placeholder="City" name="city" id="city" >
-        <div class="result1"></div>
-    </div>
-
-    <div class = "a">
-    <div class="search-box">
-	<label for="psw"><b>Hardware</b></label><br>
-        <input type="text" autocomplete="off" placeholder="Hardware" name="hardwareid" id="hardwareid" >
-        <div class="result"></div>
-    </div>
-	</div>
-	</div>
-	
-	<div style = "position:relative; top: -160px;">
-	<div class="search-box2">
-    <label for="psw"><b>Type</b></label><br>
-    <input type="text" placeholder="Type" name="type" id="type" >
-	<div class="result2"></div>
-    </div>
-	
-	
-	
-	
-	<div class = "">
+	<div class = "d">
 
     <button type="submit" class="registerbtn">Generate Reprt</button>
   </div>
   
-  </div>
+  
   
   
   

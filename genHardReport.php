@@ -253,7 +253,7 @@ $(document).ready(function(){
 	
     <div class="search-box">
 	<label for="psw"><b>Hardware Name</b></label><br>
-        <input type="text" autocomplete="off" placeholder="Hardware Name" name="hardwareid" id="hardwareid" >
+        <input type="text" autocomplete="off" placeholder="Hardware Name" name="hardwareid" id="hardwareid" required>
         <div class="result"></div>
     </div>
 	

@@ -30,7 +30,7 @@ body {
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password],input[type=date],div.sel,input[type=number] {
+input[type=text], input[type=password],input[type=date] {
   width: 40%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -38,7 +38,22 @@ input[type=text], input[type=password],input[type=date],div.sel,input[type=numbe
   border: none;
   background: #f1f1f1;
 }
-input[type=text]:focus, input[type=password]:focus,input[type=date]:focus,input[type=number]:focus {
+
+div.a {
+position: relative;
+left: 550px;
+top: -88px;
+}
+
+div.b, hr.b {
+position: relative;
+
+top: -90px;
+}
+
+
+
+input[type=text]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
@@ -83,54 +98,51 @@ a {
 top: -90px;
 }
 
-
-
-
-
-.search-box2{
+.search-box{
         width: 40%;
         position: relative;
         display: inline-block;
         font-size: 14px;
     }
-    .search-box2 input[type="text"]{
+    .search-box input[type="text"]{
         height: 45px;
         padding: 5px 10px;
         border: 0px solid #CCCCCC;
         font-size: 14px;
     }
-    .result2{
+    .result{
         position: absolute;        
         z-index: 999;
         top: 100%;
         left: 0;
     }
-    .search-box2 input[type="text"], .result{
+    .search-box input[type="text"], .result{
         width: 100%;
         box-sizing: border-box;
     }
     /* Formatting result items */
-    .result2 p{
+    .result p{
         margin: 0;
+		background: #f2f2f2;
         padding: 7px 10px;
         border: 1px solid #CCCCCC;
         border-top: none;
         cursor: pointer;
     }
-    .result2 p:hover{
+    .result p:hover{
         background: #f2f2f2;
     }
+
 </style>
 <script src="./script.js"></script>
-
 <script>
 $(document).ready(function(){
-    $('.search-box2 input[type="text"]').on("keyup input", function(){
+    $('.search-box input[type="text"]').on("keyup input", function(){
         /* Get input value on change */
         var inputVal = $(this).val();
-        var resultDropdown = $(this).siblings(".result2");
+        var resultDropdown = $(this).siblings(".result");
         if(inputVal.length){
-            $.get("sellsInvoice.php", {term: inputVal}).done(function(data){
+            $.get("selectvehicle.php", {term: inputVal}).done(function(data){
                 // Display the returned data in browser
                 resultDropdown.html(data);
             });
@@ -140,74 +152,50 @@ $(document).ready(function(){
     });
     
     // Set search input value on click of result item
-    $(document).on("click", ".result2 p", function(){
-        $(this).parents(".search-box2").find('input[type="text"]').val($(this).text());
-        $(this).parent(".result2").empty();
+    $(document).on("click", ".result p", function(){
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result").empty();
     });
-	
-	$(document).on("click", ".result2 p", function(){
-        /* Get input value on change */
-        var inputVal = $(this).text();
-        if(inputVal.length){
-            $.get("sellInvoiceReg.php", {term: inputVal}).done(function(data){
-                // Display the returned data in browser
-				
-				var words = data.split('+');
-				document.getElementById("hname").value = words[2];
-				document.getElementById("dno").value = words[4];
-				
-				
-				
-				
-				
-	
-                //resultDropdown.html(data);
-            });
-        } else{
-            document.getElementById
-                            ("hardwareid").value = "";
-        }
-    });
-	
-	
-	
-	
 });
 </script>
-
-
-
 </head>
 <body style = "background-color: #D9D9D6; overflow: hidden;">
 
 <div style = "position: relative; left: 130px">
 
-<div class="container">
-    <h2>Search Invoice</h2>
-	<div class="search-box2">
-        <input type="text" autocomplete="off" placeholder="Invoice No" name="d_Note" id="d_Note" >
-        <div class="result2"></div>
-    </div>
-	<br>
-	
+<form action="otherReg.php" method="post"">
+  <div class="container">
+    <h2>Other Cost</h2>
     <hr>
 	
-	<form action="createinvoiceReport.php" method="post" id="form" name="form">
-	
-	<div hidden >
 
-    <label for="email"><b>Invoice No</b></label><br>
-	<input type="text" placeholder="id" name="dno" id="dno" readOnly>
+    <label for="email"><b>Date</b></label><br>
+    <input type="date" placeholder="Date" name="date" id="date" required>
+	<br>
+	
+	 <label for="psw"><b>Discription</b></label><br>
+    <input type="text" placeholder="Discription" name="dis" id="dis" required>
+
+	
+	<div class = "a">
+	<label for="email"><b>Cost</b></label><br>
+    <input type="text" placeholder="Cost" name="cost" id="cost" required>
 	</div>
+	<br>
 	
-	<div hidden >
-    <label for="email"><b>Hardware</b></label><br>
-	<input type="text" placeholder="id" name="hname" id="hname" readOnly>
+	<div class = "b">
+    <hr>
+
+    <button type="submit" class="registerbtn">ADD COST</button>
+	
 	</div>
-	
-	<button type="submit" class="registerbtn">Find Invoices</button>
-	
-	</form>
+  
+  
+  
+  
+  </div>
+</form>
+
 </div>
 
 

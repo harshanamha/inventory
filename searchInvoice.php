@@ -252,6 +252,43 @@ top: -90px;
     .result2 p:hover{
         background: #f2f2f2;
     }
+	
+	.search-box3{
+        width: 40%;
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+    }
+    .search-box3 input[type="text"]{
+        height: 45px;
+        padding: 5px 10px;
+        border: 0px solid #CCCCCC;
+        font-size: 14px;
+    }
+    .result3{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 0;
+    }
+    .search-box3 input[type="text"], .result{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    /* Formatting result items */
+    .result3 p{
+        margin: 0;
+		background: #f2f2f2;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .result3 p:hover{
+        background: #f2f2f2;
+    }
+	
+	
 </style>
 <script src="./script.js"></script>
 <script>
@@ -276,6 +313,32 @@ $(document).ready(function(){
         $(this).parent(".result").empty();
     });
 });
+</script>
+
+<script>
+
+$(document).ready(function(){
+    $('.search-box3 input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result3");
+        if(inputVal.length){
+            $.get("selectEmployee.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result3 p", function(){
+        $(this).parents(".search-box3").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result3").empty();
+    });
+});
+
 </script>
 
 
@@ -313,7 +376,7 @@ $(document).ready(function(){
         var inputVal = $(this).val();
         var resultDropdown = $(this).siblings(".result2");
         if(inputVal.length){
-            $.get("sellsDeliveryNote.php", {term: inputVal}).done(function(data){
+            $.get("sellsInvoice.php", {term: inputVal}).done(function(data){
                 // Display the returned data in browser
                 resultDropdown.html(data);
             });
@@ -332,7 +395,7 @@ $(document).ready(function(){
         /* Get input value on change */
         var inputVal = $(this).text();
         if(inputVal.length){
-            $.get("sellDeliveryNoteReg.php", {term: inputVal}).done(function(data){
+            $.get("sellInvoiceReg.php", {term: inputVal}).done(function(data){
                 // Display the returned data in browser
 				
 				var words = data.split('+');
@@ -341,9 +404,9 @@ $(document).ready(function(){
 				document.getElementById('form').hidden = false;
 				document.getElementById("id").value = words[0];
 				document.getElementById("hardwareid").value = words[2];
-				document.getElementById("dNote").value = words[3];
-				document.getElementById("restamount").value = words[9];
-				document.getElementById("status").value = words[10];
+				document.getElementById("dNote").value = words[4];
+				document.getElementById("restamount").value = words[10];
+				document.getElementById("status").value = words[11];
 				
 				
 				
@@ -392,9 +455,9 @@ function sum()
 <div style = "position: relative; left: 130px">
 
 <div class="container">
-    <h2>Search Sales</h2>
+    <h2>Search Invoice</h2>
 	<div class="search-box2">
-        <input type="text" autocomplete="off" placeholder="Delivery Note No" name="d_Note" id="d_Note" >
+        <input type="text" autocomplete="off" placeholder="Invoice No" name="d_Note" id="d_Note" >
         <div class="result2"></div>
     </div>
 	
@@ -412,7 +475,7 @@ function sum()
 	
    
 	<div class="search-box1">
-	<label for="psw"><b>Delivery Note No</b></label><br>
+	<label for="psw"><b>Invoice No</b></label><br>
         <input type="text" autocomplete="off" placeholder="Delivery Note No" name="dNote" id="dNote" readOnly>
         <div class="result1"></div>
     </div>
@@ -428,11 +491,8 @@ function sum()
 	</div>
 	
 	<div class = "v">
-    <div class="search-box">
 	<label for="psw"><b>Rest Amount</b></label><br>
-        <input type="text" placeholder="id" name="restamount" id="restamount" style = "width:40%;" readOnly>
-        <div class="result"></div>
-    </div>
+        <input type="text" placeholder="id" name="restamount" id="restamount" style = "width:18%;" readOnly>
 	</div>
 	
 	<div class = "b">
@@ -442,8 +502,8 @@ function sum()
 	</div>
 	
 	<div class = "x">
-    <label for="psw"><b>Invoice Number</b></label><br>
-    <input type="text" placeholder="Invoice" name="invoice" id="invoice"  required>
+    <label for="psw"><b>Recept Number</b></label><br>
+    <input type="text" placeholder="Recept Number" name="invoice" id="invoice"  required>
 	</div>
 	
 	<div class = "d">
@@ -473,8 +533,12 @@ function sum()
 
 	
 	<div class = "a">
-	<label for="psw"><b>Helper</b></label><br>
-    <input type="text" step="any" placeholder="Helper" name="helper" id="helper" required>
+	
+	<div class="search-box3">
+	<label for="psw"><b>Helper Name</b></label><br>
+        <input type="text" autocomplete="off" placeholder="Helper" name="helper" id="helper" required>
+        <div class="result3"></div>
+    </div>
 	</div>
 	
 	<div hidden >

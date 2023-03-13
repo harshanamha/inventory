@@ -122,6 +122,76 @@ a {
 top: -90px;
 }
 
+.search-box{
+        width: 25%;
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+    }
+    .search-box input[type="text"]{
+        height: 45px;
+        padding: 5px 10px;
+        border: 0px solid #CCCCCC;
+        font-size: 14px;
+    }
+    .result{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 0;
+    }
+    .search-box input[type="text"], .result{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    /* Formatting result items */
+    .result p{
+        margin: 0;
+		background: #f2f2f2;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .result p:hover{
+        background: #f2f2f2;
+    }
+	
+	.search-box1{
+        width: 25%;
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+    }
+    .search-box1 input[type="text"]{
+        height: 45px;
+        padding: 5px 10px;
+        border: 0px solid #CCCCCC;
+        font-size: 14px;
+    }
+    .result1{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 0;
+    }
+    .search-box1 input[type="text"], .result{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    /* Formatting result items */
+    .result1 p{
+        margin: 0;
+		background: #f2f2f2;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .result1 p:hover{
+        background: #f2f2f2;
+    }
+
 .search-box2{
         width: 40%;
         position: relative;
@@ -160,6 +230,32 @@ top: -90px;
 </style>
 <script src="./script.js"></script>
 <script>
+
+$(document).ready(function(){
+    $('.search-box1 input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result1");
+        if(inputVal.length){
+            $.get("selectEmployee.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result1 p", function(){
+        $(this).parents(".search-box1").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result1").empty();
+    });
+});
+
+</script>
+
+<script>
 $(document).ready(function(){
     $('.search-box2 input[type="text"]').on("keyup input", function(){
         /* Get input value on change */
@@ -179,6 +275,30 @@ $(document).ready(function(){
     $(document).on("click", ".result2 p", function(){
         $(this).parents(".search-box2").find('input[type="text"]').val($(this).text());
         $(this).parent(".result2").empty();
+    });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $('.search-box input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result");
+        if(inputVal.length){
+            $.get("selectvehicle.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result p", function(){
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result").empty();
     });
 });
 </script>
@@ -269,13 +389,19 @@ $(document).ready(function(){
 	
 
     <div class = "a">
-    <label for="psw"><b>Driver Name</b></label><br>
-    <input type="text" placeholder="Driver Name" name="dname" id="dname" >
+	<div class="search-box1">
+	<label for="psw"><b>Driver Name</b></label><br>
+        <input type="text" autocomplete="off" placeholder="Driver Name" name="dname" id="dname" >
+        <div class="result1"></div>
+    </div>
 	</div>
 	
 	<div class = "c">
-    <label for="psw"><b>Vehicle No</b></label><br>
-    <input type="text" placeholder="Vehicle No" name="vNo" id="vNo" >
+	<div class="search-box">
+	<label for="psw"><b>Vehicle Number</b></label><br>
+        <input type="text" autocomplete="off" placeholder="Vehicle Number" name="vNo" id="vNo">
+        <div class="result"></div>
+    </div>
 	</div>
 	</div>
 	

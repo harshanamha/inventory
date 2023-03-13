@@ -18,8 +18,8 @@ $dname=$_POST["dname"];
 $vno=$_POST["vNo"];
 
 
-$sql = "INSERT INTO stores (delivery_note, date, type, sale_type, bulk_bag, qty, soNo, poNo, dis, draft, amount, diverName, vehicleNo)
-VALUES ('$dnote','$date','$type','$stype','$bulk','$qty','$sono','$pono','$dis','$draft',$amount,'$dname','$vno')";
+$sql = "INSERT INTO stores (delivery_note, date, type, sale_type, bulk_bag, qty, soNo, poNo, dis, draft, amount, diverName, vehicleNo,restqty)
+VALUES ('$dnote','$date','$type','$stype','$bulk','$qty','$sono','$pono','$dis','$draft',$amount,'$dname','$vno','$qty')";
 
 if ($con->query($sql) === TRUE) {
   echo '<script language="javascript">';

@@ -359,15 +359,26 @@ echo '</table>';
 }
 else{
 	
+	$hid = '';
+	$cid = '';
+	
+	
+	if($hardwareid){
+	
 	$hardwareResult= mysqli_query($conn,"SELECT * FROM hardware where name='$hardwareid'");
 $hardwarerow = mysqli_fetch_array($hardwareResult,MYSQLI_BOTH);
 
 $hid = $hardwarerow["id"];
 
+	}
+	
+	if($city){
+
 $cityResult= mysqli_query($conn,"SELECT * FROM city where name='$city'");
 $cityrow = mysqli_fetch_array($cityResult,MYSQLI_BOTH);	
 
 $cid = $cityrow["id"];
+	}
 
 if($type || $city || $hardwareid){
 	

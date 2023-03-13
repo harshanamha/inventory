@@ -203,7 +203,7 @@ $(document).ready(function(){
 	
 	<div class="search-box1">
 	<label for="psw"><b>City</b></label><br>
-        <input type="text" autocomplete="off" placeholder="City" name="city" id="city" >
+        <input type="text" autocomplete="off" placeholder="City" name="city" id="city" required >
         <div class="result1"></div>
     </div>
 	</div>

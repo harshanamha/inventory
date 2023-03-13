@@ -332,7 +332,7 @@ function hidhardware()
 	
 	<div class="search-box2">
     <label for="psw"><b>Type</b></label><br>
-    <input type="text" placeholder="Type" name="type" id="type" >
+    <input type="text" placeholder="Type" name="type" id="type" required >
 	<div class="result2"></div>
     </div>
 	
@@ -340,7 +340,7 @@ function hidhardware()
     <div class = "a">
     <div class="search-box">
 	<label for="psw"><b>Hardware</b></label><br>
-        <input type="text" autocomplete="off" placeholder="Hardware" name="hardwareid" id="hardwareid" onkeyup="hidcity()" >
+        <input type="text" autocomplete="off" placeholder="Hardware" name="hardwareid" id="hardwareid" onkeyup="hidcity()" required>
         <div class="result"></div>
     </div>
 	</div>
@@ -350,7 +350,7 @@ function hidhardware()
 	
 	<div class="search-box1">
 	<label for="psw"><b>City</b></label><br>
-        <input type="text" autocomplete="off" placeholder="City" name="city" id="city" onkeyup="hidhardware()">
+        <input type="text" autocomplete="off" placeholder="City" name="city" id="city" onkeyup="hidhardware()" required>
         <div class="result1"></div>
     </div>
 	

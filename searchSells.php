@@ -44,6 +44,11 @@ position: relative;
 left: 550px;
 top: -88px;
 }
+div.aa {
+position: relative;
+left: 400px;
+top: -88px;
+}
 div.x {
 position: relative;
 left: 550px;
@@ -72,6 +77,12 @@ div.y {
 position: relative;
 
 top: -110px;
+}
+
+div.ppp {
+position: relative;
+left: 770px;
+top: -178px;
 }
 
 
@@ -119,6 +130,11 @@ a {
   left: 100px;
 
 top: -90px;
+}
+
+div.up {
+position: relative;
+top: -80px;
 }
 
 .searchbtn {
@@ -308,7 +324,7 @@ $(document).ready(function(){
         var inputVal = $(this).val();
         var resultDropdown = $(this).siblings(".result2");
         if(inputVal.length){
-            $.get("sellsDeliveryNote.php", {term: inputVal}).done(function(data){
+            $.get("findInvoiceNo.php", {term: inputVal}).done(function(data){
                 // Display the returned data in browser
                 resultDropdown.html(data);
             });
@@ -327,7 +343,7 @@ $(document).ready(function(){
         /* Get input value on change */
         var inputVal = $(this).text();
         if(inputVal.length){
-            $.get("sellDeliveryNoteReg.php", {term: inputVal}).done(function(data){
+            $.get("testinvoiceReg.php", {term: inputVal}).done(function(data){
                 // Display the returned data in browser
 				
 				var words = data.split('+');
@@ -338,11 +354,20 @@ $(document).ready(function(){
 				document.getElementById("date").value = words[1];
 				document.getElementById("hardwareid").value = words[2];
 				document.getElementById("dNote").value = words[3];
-				document.getElementById("qty").value = words[4];
-				document.getElementById("fqty").value = words[5];
-				document.getElementById("uprice").value = words[6];
-				document.getElementById("dprice").value = words[7];
-				document.getElementById("total").value = words[8];
+				document.getElementById("qty").value = words[5];
+				document.getElementById("qty1").value = words[5];
+				document.getElementById("fqty").value = words[6];
+				document.getElementById("fqty1").value = words[6];
+				document.getElementById("uprice").value = words[7];
+				document.getElementById("dprice").value = words[8];
+				document.getElementById("total").value = words[9];
+				document.getElementById("total1").value = words[9];
+				document.getElementById("rest").value = words[10];
+				document.getElementById("status").value = words[11];
+				document.getElementById("sid").value = words[12];
+				document.getElementById("rqty").value = words[13];
+				document.getElementById("inv").value = words[4];
+				document.getElementById("inv").readOnly = true;
 				document.getElementById("dNote").readOnly = true;
 				document.getElementById('date').readOnly = true;
 				document.getElementById('hardwareid').readOnly = true;
@@ -371,6 +396,88 @@ $(document).ready(function(){
 });
 </script>
 
+<script>
+function sum2() 
+{ 
+
+
+const restamount = parseInt(document.getElementById('qty').value); 
+const qty1 = parseInt(document.getElementById('qty1').value); 
+    const amount = parseInt(document.getElementById('rqty').value); 
+    const fqty = parseInt(document.getElementById('fqty').value); 
+    const fqty1 = parseInt(document.getElementById('fqty1').value); 
+	
+	const nqty = (restamount - qty1) ;
+	const nfqty = (fqty - fqty1) ;
+     
+    const rest =  amount - (nqty+nfqty);
+  
+    if(rest<0) 
+    { 
+        alert("Quantity IS Greater Than Rest Quantity");
+		document.getElementById('fqty').value = 0;
+		
+    } else {
+    var txtFirstNumberValue = document.getElementById('uprice').value; 
+    var txtSecondNumberValue = document.getElementById('qty').value; 
+    var txtThiredNumberValue = document.getElementById('dprice').value; 
+    var result = (txtFirstNumberValue * txtSecondNumberValue) - txtThiredNumberValue; 
+    if(txtFirstNumberValue=="" ||txtSecondNumberValue=="") 
+    { 
+        document.getElementById('total').value = 0; 
+    }
+    if (!isNaN(result)) 
+    { 
+        document.getElementById('total').value = result;
+    }
+	}
+}
+
+</script>
+
+<script>
+
+function sum1() 
+{ 
+
+
+const restamount = parseInt(document.getElementById('qty').value); 
+const qty1 = parseInt(document.getElementById('qty1').value); 
+    const amount = parseInt(document.getElementById('rqty').value); 
+    const fqty = parseInt(document.getElementById('fqty').value); 
+    const fqty1 = parseInt(document.getElementById('fqty1').value); 
+	
+	const nqty = (restamount - qty1) ;
+	const nfqty = (fqty - fqty1) ;
+     
+    const rest =  amount - (nqty+nfqty);
+  
+    if(rest<0) 
+    { 
+        alert("Quantity IS Greater Than Rest Quantity");
+		document.getElementById('qty').value = 0;
+		
+    } else {
+    var txtFirstNumberValue = document.getElementById('uprice').value; 
+    var txtSecondNumberValue = document.getElementById('qty').value; 
+    var txtThiredNumberValue = document.getElementById('dprice').value; 
+    var result = (txtFirstNumberValue * txtSecondNumberValue) - txtThiredNumberValue; 
+    if(txtFirstNumberValue=="" ||txtSecondNumberValue=="") 
+    { 
+        document.getElementById('total').value = 0; 
+    }
+    if (!isNaN(result)) 
+    { 
+        document.getElementById('total').value = result;
+    }
+	}
+}
+
+</script>
+
+
+
+
 <script >
     function enableInput() {
 				document.getElementById("dNote").readOnly = false;
@@ -381,6 +488,7 @@ $(document).ready(function(){
 				document.getElementById('uprice').readOnly = false;
 				document.getElementById('dprice').readOnly = false;
 				document.getElementById('updatebtn').hidden = false;
+				document.getElementById("inv").readOnly = false;
 
     };
 </script>
@@ -413,9 +521,9 @@ function sum()
 <div style = "position: relative; left: 130px">
 
 <div class="container">
-    <h2>Search Sales</h2>
+    <h2>Search Invoice</h2>
 	<div class="search-box2">
-        <input type="text" autocomplete="off" placeholder="Delivery Note No" name="d_Note" id="d_Note" >
+        <input type="text" autocomplete="off" placeholder="Invoice No" name="d_Note" id="d_Note" >
         <div class="result2"></div>
     </div>
 	<button class ="searchbtn" onclick="enableInput()" >edit</button>
@@ -428,21 +536,43 @@ function sum()
 
     <label for="email"><b>id</b></label><br>
 	<input type="text" placeholder="id" name="id" id="id" readOnly>
+	
+	<label for="psw"><b>sid</b></label><br>
+    <input type="text" placeholder="sid" name="sid" id="sid" >
+	
+	<label for="psw"><b>restqty</b></label><br>
+    <input type="text" placeholder="rqty" name="rqty" id="rqty" >
+	
+	<label for="psw"><b>qty1</b></label><br>
+    <input type="text" placeholder="qty1" name="qty1" id="qty1" >
+	
+	<label for="psw"><b>fqty1</b></label><br>
+    <input type="text" placeholder="fqty1" name="fqty1" id="fqty1" >
 	</div>
+	
+	
+	
   
 	
    
     <label for="email"><b>Date</b></label><br>
-    <input type="date" name="date" id="date" min="1900-01-01" max="2100-12-31" required>
+    <input style = "width: 250px" type="date" name="date" id="date" min="1900-01-01" max="2100-12-31" required>
 	<br>
 
-    <div class = "a">
+    <div class = "aa">
     <div class="search-box1">
 	<label for="psw"><b>Delivery Note No</b></label><br>
-        <input type="text" autocomplete="off" placeholder="Delivery Note No" name="dNote" id="dNote" required>
+        <input style = "width: 250px" type="text" autocomplete="off" placeholder="Delivery Note No" name="dNote" id="dNote" required>
         <div class="result1"></div>
     </div>
 	</div>
+	
+	<div class = "ppp">
+    <label for="psw"><b>Invoice Number</b></label><br>
+    <input style = "width: 250px" type="text" placeholder="Invoice Number" name="inv" id="inv" required>
+	</div>
+	
+	<div class="up">
 	
 	<div class = "b">
 	<div class="search-box">
@@ -455,14 +585,14 @@ function sum()
 	
 	<div class = "x">
     <label for="psw"><b>Qty</b></label><br>
-    <input type="number" placeholder="Qty" name="qty" id="qty" onkeyup="sum()" required>
+    <input type="number" placeholder="Qty" name="qty" id="qty" onkeyup="sum1()" required>
 	</div>
 	
 	<div class = "d">
 	
 	<div class = "">
 	<label for="psw"><b>Free Qty</b></label><br>
-    <input type="number" placeholder="Qty" name="fqty" id="fqty" value="0" required>
+    <input type="number" placeholder="Qty" name="fqty" id="fqty" value="0" onkeyup="sum2()" required>
 	</div>
 	
 	
@@ -484,11 +614,24 @@ function sum()
     <input type="number" step="any" placeholder="0.00" name="total" id="total" readonly required>
 	</div>
 	
+	<div hidden >
+
+    <label for="email"><b>Status</b></label><br>
+	<input type="text" placeholder="status" name="status" id="status" readOnly>
+	
+	<label for="email"><b>restAmount</b></label><br>
+	<input type="text" placeholder="rest" name="rest" id="rest" readOnly>
+	
+	<label for="psw"><b>Total Price1</b></label><br>
+    <input type="number" step="any" placeholder="0.00" name="total1" id="total1" readonly required>
+	</div>
+	
 	<div class="y">
     <hr>
 
     <button type="submit" class="registerbtn"  id = "updatebtn" name = "updatebtn" hidden>Update Sale</button>
 	</div>
+  </div>
   </div>
   
   

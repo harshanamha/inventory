@@ -180,6 +180,41 @@ top: -10px;
         background: #D9D9D6;
     }
 	
+	.search-box1{
+        width: 25%;
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+    }
+    .search-box1 input[type="text"]{
+        height: 45px;
+        padding: 5px 10px;
+        border: 0px solid #CCCCCC;
+        font-size: 14px;
+    }
+    .result1{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 0;
+    }
+    .search-box1 input[type="text"], .result{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    /* Formatting result items */
+    .result1 p{
+        margin: 0;
+		background: #f2f2f2;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .result1 p:hover{
+        background: #f2f2f2;
+    }
+	
 	.search-box2{
         width: 40%;
         position: relative;
@@ -216,6 +251,42 @@ top: -10px;
     }
 
 
+.search-box3{
+        width: 25%;
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+    }
+    .search-box3 input[type="text"]{
+        height: 45px;
+        padding: 5px 10px;
+        border: 0px solid #CCCCCC;
+        font-size: 14px;
+    }
+    .result3{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 0;
+    }
+    .search-box3 input[type="text"], .result{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    /* Formatting result items */
+    .result3 p{
+        margin: 0;
+		background: #f2f2f2;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .result3 p:hover{
+        background: #f2f2f2;
+    }
+	
+
 </style>
 <script src="./script.js"></script>
 
@@ -239,6 +310,56 @@ $(document).ready(function(){
     $(document).on("click", ".result2 p", function(){
         $(this).parents(".search-box2").find('input[type="text"]').val($(this).text());
         $(this).parent(".result2").empty();
+    });
+});
+</script>
+
+<script>
+
+$(document).ready(function(){
+    $('.search-box1 input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result1");
+        if(inputVal.length){
+            $.get("selectEmployee.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result1 p", function(){
+        $(this).parents(".search-box1").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result1").empty();
+    });
+});
+
+</script>
+
+<script>
+$(document).ready(function(){
+    $('.search-box3 input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result3");
+        if(inputVal.length){
+            $.get("selectvehicle.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result3 p", function(){
+        $(this).parents(".search-box3").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result3").empty();
     });
 });
 </script>
@@ -281,6 +402,7 @@ $(document).ready(function(){
 				document.getElementById("saletype").value = words[4];
 				document.getElementById("bulk").value = words[5];
 				document.getElementById("qty").value = words[6];
+				document.getElementById("tqty").value = words[6];
 				document.getElementById("soNo").value = words[7];
 				document.getElementById("poNo").value = words[8];
 				document.getElementById("cash_dis").value = words[9];
@@ -288,6 +410,7 @@ $(document).ready(function(){
 				document.getElementById("amount").value = words[11];
 				document.getElementById("dname").value = words[12];
 				document.getElementById("vNo").value = words[13];
+				document.getElementById("rqty").value = words[14];
 				document.getElementById("type").value = words[3];
 				document.getElementById("type").readOnly = true;
 				document.getElementById("dNote").readOnly = true;
@@ -367,6 +490,12 @@ $(document).ready(function(){
 
     <label for="email"><b>Hardware id</b></label><br>
 	<input type="text" placeholder="id" name="id" id="id" readOnly>
+	
+	<label for="psw"><b>totalqty</b></label><br>
+    <input type="text" placeholder="Qty" name="tqty" id="tqty" >
+	
+	<label for="psw"><b>restqty</b></label><br>
+    <input type="text" placeholder="rqty" name="rqty" id="rqty" >
 	</div>
 
    <label for="email"><b>Delivery Note No</b></label><br>
@@ -445,13 +574,19 @@ $(document).ready(function(){
 	
 
     <div class = "a">
-    <label for="psw"><b>Driver Name</b></label><br>
-    <input type="text" placeholder="Driver Name" name="dname" id="dname" >
+    <div class="search-box1">
+	<label for="psw"><b>Driver Name</b></label><br>
+        <input type="text" autocomplete="off" placeholder="Driver Name" name="dname" id="dname" >
+        <div class="result1"></div>
+    </div>
 	</div>
 	
 	<div class = "c">
-    <label for="psw"><b>Vehicle No</b></label><br>
-    <input type="text" placeholder="Vehicle No" name="vNo" id="vNo" >
+   <div class="search-box3">
+	<label for="psw"><b>Vehicle Number</b></label><br>
+        <input type="text" autocomplete="off" placeholder="Vehicle Number" name="vNo" id="vNo">
+        <div class="result3"></div>
+    </div>
 	</div>
 	</div>
 	

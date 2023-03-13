@@ -40,7 +40,9 @@ $row = mysqli_fetch_array($cityResult,MYSQLI_BOTH);
 					echo  '+' ;
 					echo  $row["delivery_Note"] ;
 					echo  '+' ;
-					echo  $row["qty"] ;
+					echo  $row["invno"] ;
+					echo  '+' ;
+					echo  $row["sqty"] ;
 					echo  '+' ;
 					echo  $row["freeqty"] ;
 					echo  '+' ;
@@ -53,6 +55,7 @@ $row = mysqli_fetch_array($cityResult,MYSQLI_BOTH);
 					echo  $row["restamount"] ;
 					echo  '+' ;
 					echo  $row["status"] ;
+					
 					
 					
 					

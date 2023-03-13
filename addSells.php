@@ -45,10 +45,22 @@ left: 550px;
 top: -88px;
 }
 
+div.aa {
+position: relative;
+left: 400px;
+top: -88px;
+}
+
 div.b, hr.b {
 position: relative;
 
 top: -90px;
+}
+
+div.up {
+position: relative;
+
+top: -80px;
 }
 
 div.d {
@@ -116,6 +128,12 @@ left: 550px;
 top: -180px;
 }
 
+div.ppp {
+position: relative;
+left: 770px;
+top: -178px;
+}
+
 div.y {
 position: relative;
 
@@ -147,6 +165,7 @@ top: -100px;
     /* Formatting result items */
     .result p{
         margin: 0;
+	background: #f2f2f2;
         padding: 7px 10px;
         border: 1px solid #CCCCCC;
         border-top: none;
@@ -239,23 +258,122 @@ $(document).ready(function(){
         $(this).parent(".result1").empty();
     });
 	
+	$(document).on("click", ".result1 p", function(){
+        /* Get input value on change */
+        var inputVal = $(this).text();
+        if(inputVal.length){
+            $.get("searchDeliveryReg.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+				
+				var words = data.split('+');
+				
+				
+				document.getElementById("id").value = words[0];
+				document.getElementById("rqty").value = words[14];
+				document.getElementById("qty").readOnly = false;
+				document.getElementById("fqty").readOnly = false;
+				
+				
+				
+	
+                //resultDropdown.html(data);
+            });
+        } else{
+            document.getElementById
+                            ("rqty").value = "";
+        }
+    });
+	
 	
 	
 	
 });
 </script>
 
+
 <script>
 
-function sum() 
+function sum2() 
 { 
+
+
+const restamount = parseInt(document.getElementById('qty').value); 
+    const amount = parseInt(document.getElementById('rqty').value); 
+    const fqty = parseInt(document.getElementById('fqty').value); 
+     
+    const rest =  amount - (restamount+fqty);
+  
+    if(rest<0) 
+    { 
+        alert("Quantity IS Greater Than Rest Quantity");
+		document.getElementById('fqty').value = 0;
+		
+    } else {
     var txtFirstNumberValue = document.getElementById('uprice').value; 
     var txtSecondNumberValue = document.getElementById('qty').value; 
     var txtThiredNumberValue = document.getElementById('dprice').value; 
     var result = (txtFirstNumberValue * txtSecondNumberValue) - txtThiredNumberValue; 
     if(txtFirstNumberValue=="" ||txtSecondNumberValue=="") 
     { 
-        document.getElementById('balance_payement').value = 0; 
+        document.getElementById('total').value = 0; 
+    }
+    if (!isNaN(result)) 
+    { 
+        document.getElementById('total').value = result;
+    }
+	}
+}
+
+</script>
+
+<script>
+
+function sum1() 
+{ 
+
+
+const restamount = parseInt(document.getElementById('qty').value); 
+    const amount = parseInt(document.getElementById('rqty').value); 
+    const fqty = parseInt(document.getElementById('fqty').value); 
+     
+    const rest =  amount - (restamount+fqty);
+  
+    if(rest<0) 
+    { 
+        alert("Quantity IS Greater Than Rest Quantity");
+		document.getElementById('qty').value = 0;
+		
+    } else {
+    var txtFirstNumberValue = document.getElementById('uprice').value; 
+    var txtSecondNumberValue = document.getElementById('qty').value; 
+    var txtThiredNumberValue = document.getElementById('dprice').value; 
+    var result = (txtFirstNumberValue * txtSecondNumberValue) - txtThiredNumberValue; 
+    if(txtFirstNumberValue=="" ||txtSecondNumberValue=="") 
+    { 
+        document.getElementById('total').value = 0; 
+    }
+    if (!isNaN(result)) 
+    { 
+        document.getElementById('total').value = result;
+    }
+	}
+}
+
+</script>
+
+<script>
+
+function sum() 
+{ 
+
+
+    var txtFirstNumberValue = document.getElementById('uprice').value; 
+    var txtSecondNumberValue = document.getElementById('qty').value; 
+    var txtThiredNumberValue = document.getElementById('dprice').value; 
+    var result = (txtFirstNumberValue * txtSecondNumberValue) - txtThiredNumberValue; 
+    if(txtFirstNumberValue=="" ||txtSecondNumberValue=="") 
+    { 
+        document.getElementById('total').value = 0; 
     }
     if (!isNaN(result)) 
     { 
@@ -271,23 +389,37 @@ function sum()
 
 <form action="addSellsReg.php" method="post"">
   <div class="container">
-    <h2>ADD SALES</h2>
+    <h2>ADD INVOICE</h2>
     <hr>
 	
    
     <label for="email"><b>Date</b></label><br>
-    <input type="date" name="date" id="date" required>
+    <input style = "width: 250px" type="date" name="date" id="date" required>
 	<br>
 	
 	
-	<div class = "a">
+	<div class = "aa">
     <div class="search-box1">
 	<label for="psw"><b>Delivery Note No</b></label><br>
-        <input type="text" autocomplete="off" placeholder="Delivery Note No" name="dNote" id="dNote" required>
+        <input style = "width: 250px" type="text" autocomplete="off" placeholder="Delivery Note No" name="dNote" id="dNote" required>
         <div class="result1"></div>
     </div>
 	</div>
+	
+	<div hidden >
+	<label for="psw"><b>id</b></label><br>
+    <input type="text" placeholder="id" name="id" id="id" >
+	
+	<label for="psw"><b>restqty</b></label><br>
+    <input type="text" placeholder="rqty" name="rqty" id="rqty" >
+	</div>
 
+	<div class = "ppp">
+    <label for="psw"><b>Invoice Number</b></label><br>
+    <input style = "width: 250px" type="text" placeholder="Invoice Number" name="inv" id="inv" required>
+	</div>
+	
+	<div class="up">
     
 	<div class = "b">
 	 <div class="search-box">
@@ -301,14 +433,14 @@ function sum()
 	
 	<div class = "x">
     <label for="psw"><b>Qty</b></label><br>
-    <input type="number" placeholder="Qty" name="qty" id="qty" onkeyup="sum()" required>
+    <input type="number" placeholder="Qty" name="qty" id="qty" onkeyup="sum1()" required readOnly>
 	</div>
 	
 	<div class = "d">
 	
 	<div class = "">
 	<label for="psw"><b>Free Qty</b></label><br>
-    <input type="number" placeholder="Qty" name="fqty" id="fqty" value="0" required>
+    <input type="number" placeholder="Qty" name="fqty" id="fqty" value="0" onkeyup="sum2()" required readOnly>
 	</div>
 	
 	
@@ -336,6 +468,7 @@ function sum()
 
     <button type="submit" class="registerbtn">Create Sale</button>
 	</div>
+  </div>
   </div>
   
   
