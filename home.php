@@ -146,6 +146,7 @@ li a:hover {
      <a href="genHardReport.php" target="targetframe">Hardware Detail Report</a>
      <a href="gentypesumReport.php" target="targetframe">Type Detail Report</a>
      <a href="collectmoney.php" target="_blank">Collect Money Report</a>
+     <a href="collectmoneytotal.php" target="_blank">Collect Money Total</a>
     </div>
   </div>
   <li><a href="deliveryNoteReport.php" target="targetframe">Delivery Note Report</a></li>
