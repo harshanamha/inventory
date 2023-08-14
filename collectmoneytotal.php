@@ -16,9 +16,9 @@ echo "<h2 style='text-align: center;'>". "Status :" . "NOT DONE" . "</h2>";
 
 
 
-$select = mysqli_query($conn,"SELECT h.name as hname,SUM(s.restamount) as rest
-FROM `sales` as s,`hardware` as h
-where s.hardware = h.id AND s.status = 'NOT DONE'
+$select = mysqli_query($conn,"SELECT h.name as hname,c.name as cname,SUM(s.restamount) as rest
+FROM `sales` as s,`hardware` as h, city as c 
+where s.hardware = h.id AND c.id = h.city AND s.status = 'NOT DONE'
 GROUP BY s.hardware");
 
 
@@ -53,6 +53,7 @@ echo'<div style="overflow-y:auto;">';
 echo '<table border=1px id="customers">';
 echo'<tr>';
 echo'<th>'."Hardware Name".'</th>';
+echo'<th>'."City".'</th>';
 echo'<th>'."Total Rest Amount ".'</th>';
 echo'</tr>';
 
@@ -60,6 +61,7 @@ while($row = mysqli_fetch_array($select,MYSQLI_BOTH)){
 	
 	echo'<tr>';
 	echo'<td>'.$row["hname"].'</td>';
+	echo'<td>'.$row["cname"].'</td>';
 	echo'<td>'.$row["rest"].'</td>';
 	echo'</tr>';
 		
